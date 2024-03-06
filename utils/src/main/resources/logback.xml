@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<configuration>
+    <contextName>common-logger-example</contextName>
+    <conversionRule conversionWord="traceId" converterClass="org.javaboy.utils.logback.LogMessageConverter"/>
+<!--    <conversionRule conversionWord="clientAppName" converterClass="com.jkys.common.logger.client.LogClientAppNameConverter"/>
+    <conversionRule conversionWord="tag" converterClass="com.jkys.common.logger.client.LogTagConverter"/>-->
+    <!-- 输出到控制台 -->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- 输出的格式 -->
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+<!--            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %traceId %logger{56}.%M\(%F:%L\) - %m%n</pattern>-->
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} | %-5level | %traceId | %logger{80} | %F[%line] - %X{LOG_TYPE}-%X{OP_ROLE}-%X{OP_TYPE}|%X{OP_WORK_NO}|%X{FLOW_TYPE}-%X{FLOW_OPEN_NODE}-%X{FLOW_OPERATE_CODE}|%X{FORM_NO}-%X{WORK_NO}| - %msg %n%caller{1}</pattern>
+            <!--            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %highlight(%-5level) %traceId %cyan(%logger{56}).%M\(%F:%L\)%clientAppName - %m%n</pattern>-->
+        </encoder>
+    </appender>
+
+    <root level="info">
+        <appender-ref ref="console"/>
+      <!--  <appender-ref ref="info_appender"/>
+        <appender-ref ref="error_appender"/>
+        <appender-ref ref="sql_appender"/>-->
+    </root>
+
+</configuration>
+

@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.alibaba.hr.dal.mapper.form.ContractFormExtMapper">
+    <sql id="Base_Column_List_ALIAS">
+        c.id, c.gmt_create, c.gmt_modified, c.creator, c.modifier, c.is_deleted, c.form_type, c.form_status,
+    c.deal_person, c.start_person, c.emp_no, c.bpms_instance_no, c.remark, c.is_remain, c.remain_end,
+    c.signed_company, c.work_location, c.operands, c.dept, c.is_locked, c.country_code, c.dept_path,
+    c.is_relate_msg, c.is_all_have_pdf, c.is_online_sign, c.sign_apply_id, c.process_code, c.contract_begin_date,
+    c.ext_content
+    </sql>
+    <select id="queryAllRunningForm"  resultMap="com.alibaba.hr.dal.mapper.form.ContractFormMapper.BaseResultMap">
+        select
+        <include refid="com.alibaba.hr.dal.mapper.form.ContractFormMapper.Base_Column_List" />
+        from contract_form c
+        <where>
+            1 = 1
+            and c.is_deleted = 'n' and c.form_status not in ('finish','abort')
+        </where>
+    </select>
+    <select id="queryByParamSingle" parameterType="java.util.Map" resultMap="com.alibaba.hr.dal.mapper.form.ContractFormMapper.BaseResultMap">
+        select
+        <include refid="Base_Column_List_ALIAS" />
+        from contract_form c
+        <if test="contractTypeSpecial != null and contractTypeSpecial != ''">
+            inner join contract_form_special s on c.id=s.form_id
+        </if>
+        <where>
+            1 = 1
+            and c.is_deleted = 'n'
+            <include refid="WHERE_CONDITION_SINGLE" />
+            <if test="contractTypeSpecial != null and contractTypeSpecial != ''">
+                and s.contract_type= #{contractTypeSpecial}
+            </if>
+        </where>
+        <if test="orderByEmpNo!= null and orderByEmpNo !='' ">
+            order by  emp_no  asc ,id asc
+        </if>
+        <if test="orderByEmpNo == null or orderByEmpNo =='' ">
+            order by c.id desc
+        </if>
+        <if test="rowStart!=null and row !=null">
+            limit #{rowStart},#{row}
+        </if>
+    </select>
+    <select id="countByParamSingle" parameterType="java.util.Map" resultType="java.lang.Long">
+        select count(c.id) from contract_form c
+        <if test="contractTypeSpecial != null and contractTypeSpecial != ''">
+            inner join contract_form_special s on c.id=s.form_id
+        </if>
+        <where>
+            1 = 1 and c.is_deleted = 'n'
+            <include refid="WHERE_CONDITION_SINGLE" />
+            <if test="contractTypeSpecial != null and contractTypeSpecial != ''">
+                and s.contract_type= #{contractTypeSpecial}
+            </if>
+        </where>
+    </select>
+    <select id="queryRunningRelateForm" parameterType="java.lang.Long" resultMap="com.alibaba.hr.dal.mapper.form.ContractFormMapper.BaseResultMap">
+        select
+        <include refid="Base_Column_List_ALIAS" />
+        from contract_form_contract g
+        left join contract_form c on c.id = g.form_id
+        <where>
+            1 = 1
+            and c.is_deleted = 'n'
+            and c.form_status not in ('finish','abort')
+            and g.is_deleted = 'n'
+            and g.contract_id = #{contractId,jdbcType=BIGINT}
+            and g.relation_type = 'ORIGIN'
+        </where>
+        order by c.id desc
+    </select>
+    <select id="queryByParamMulti" parameterType="java.util.Map" resultMap="com.alibaba.hr.dal.mapper.form.ContractFormMapper.BaseResultMap">
+        select
+        <include refid="Base_Column_List_ALIAS" />
+        from contract_form c
+        left join contract_form_change g on c.id = g.form_id
+        left join contract_form_project p on c.id = p.form_id
+        <where>
+            1 = 1
+            and c.is_deleted = 'n'
+            <include refid="WHERE_CONDITION_MULTI" />
+        </where>
+        order by c.id desc
+        limit #{rowStart},#{row}
+    </select>
+    <select id="countByParamMulti" parameterType="java.util.Map" resultType="java.lang.Long">
+        select count(c.id) from contract_form c
+        left join contract_form_change g on c.id = g.form_id
+        left join contract_form_project p on c.id = p.form_id
+        <where>
+            1 = 1 and c.is_deleted = 'n'
+            <include refid="WHERE_CONDITION_MULTI" />
+        </where>
+    </select>
+    <!--新签-->
+    <select id="queryNewByParamMulti" parameterType="java.util.Map" resultMap="com.alibaba.hr.dal.mapper.form.ContractFormMapper.BaseResultMap">
+        select
+        <include refid="Base_Column_List_ALIAS" />
+        from contract_form c
+        left join contract_form_new g on c.id = g.form_id
+        <where>
+            1 = 1
+            and c.is_deleted = 'n'
+            <include refid="WHERE_CONDITION_MULTI_NEW" />
+        </where>
+        order by c.id desc
+        limit #{rowStart},#{row}
+    </select>
+    <select id="countNewByParamMulti" parameterType="java.util.Map" resultType="java.lang.Long">
+        select count(c.id) from contract_form c
+        left join contract_form_new g on c.id = g.form_id
+        <where>
+            1 = 1 and c.is_deleted = 'n'
+            <include refid="WHERE_CONDITION_MULTI_NEW" />
+        </where>
+    </select>
+    <sql id ="WHERE_CONDITION_MULTI_NEW">
+        <if test="gmtEntryUpper!= null ">
+            <![CDATA[ and g.gmt_entry <= #{gmtEntryUpper}]]>
+        </if>
+        <if test="gmtEntryLower!= null ">
+            <![CDATA[ and g.gmt_entry >= #{gmtEntryLower}]]>
+        </if>
+        <include refid="WHERE_CONDITION_SINGLE" />
+    </sql>
+    <select id="queryResignFormByOriContract" parameterType="java.lang.Long" resultMap="com.alibaba.hr.dal.mapper.form.ContractFormMapper.BaseResultMap">
+        select
+        <include refid="Base_Column_List_ALIAS" />
+        from contract_form c inner join contract_form_contract cf on c.id=cf.form_id
+        WHERE
+        c.is_deleted = 'n'
+        and c.form_type = 'RESIGN'
+        and cf.relation_type='ORIGIN'
+        and cf.contract_id=#{oriContract,jdbcType=BIGINT}
+    </select>
+    <update id="dealRemainTask">
+        update
+        contract_form
+        <set>
+            is_remain='n',gmt_modified=now(),modifier='system'
+        </set>
+        <where>
+            is_remain='y' and is_deleted='n' <![CDATA[ and remain_end <= now()]]>
+        </where>
+    </update>
+    <sql id ="WHERE_CONDITION_MULTI">
+        <if test="project !=null and project!=''">
+            and p.project_id= #{project,jdbcType=VARCHAR}
+            and p.is_deleted = 'n'
+        </if>
+        <if test="changeType !=null and changeType!=''">
+            and g.event_type= #{changeType,jdbcType=VARCHAR}
+        </if>
+        <if test="effectDateUpper!= null ">
+            <![CDATA[ and g.contract_effect_date <= #{effectDateUpper}]]>
+        </if>
+        <if test="effectDateLower!= null ">
+            <![CDATA[ and g.contract_effect_date >= #{effectDateLower}]]>
+        </if>
+        <include refid="WHERE_CONDITION_SINGLE" />
+    </sql>
+    <sql id="WHERE_CONDITION_SINGLE">
+        <!--不透出不带流程办理单 一键入职-->
+        and c.bpms_instance_no is not null
+        <if test="id!= null and id != '' ">
+            and c.id = #{id,jdbcType=BIGINT}
+        </if>
+        <if test="isOnlineSign!= null and isOnlineSign != '' ">
+            and c.is_online_sign = #{isOnlineSign,jdbcType=VARCHAR}
+        </if>
+        <if test="idList!= null and idList.size > 0">
+            and c.id in
+            <foreach close=")" collection="idList" index="index" item="item" open="(" separator=",">
+                #{item}
+            </foreach>
+        </if>
+        <if test="formType!= null and formType != '' ">
+            and c.form_type = #{formType,jdbcType=VARCHAR}
+        </if>
+        <if test="formTypeList!= null and formTypeList.size > 0">
+            and c.form_type in
+            <foreach close=")" collection="formTypeList" index="index" item="item" open="(" separator=",">
+                #{item}
+            </foreach>
+        </if>
+        <if test="formStatus!= null and formStatus!= '' ">
+            <if test="formStatus != 'nobodyDeal'">
+                and c.form_status = #{formStatus,jdbcType=VARCHAR} and (c.form_status in ('finish','abort') or !(c.deal_person is null or c.deal_person=''))
+            </if>
+            <if test="formStatus == 'nobodyDeal'">
+                and c.form_status not in ('finish','abort') and (c.deal_person is null or c.deal_person='')
+            </if>
+        </if>
+        <if test="formStatusList!= null and formStatusList.size > 0">
+            <if test="nobodyDeal != null">
+                and ((c.form_status in ('finish','abort') or !(c.deal_person is null or c.deal_person='')) and c.form_status in
+                <foreach close=")" collection="formStatusList" index="index" item="item" open="(" separator=",">
+                    #{item}
+                </foreach>
+                or ( c.form_status not in ('finish','abort') and (c.deal_person is null or c.deal_person='')))
+            </if>
+            <if test="nobodyDeal == null">
+                and (c.form_status in ('finish','abort') or !(c.deal_person is null or c.deal_person='')) and c.form_status in
+                <foreach close=")" collection="formStatusList" index="index" item="item" open="(" separator=",">
+                    #{item}
+                </foreach>
+            </if>
+        </if>
+        <if test="dealPerson!= null and dealPerson!= '' ">
+            and c.deal_person = #{dealPerson,jdbcType=VARCHAR}
+        </if>
+        <if test="dealPersonList!= null and dealPersonList.size > 0">
+            and c.deal_person in
+            <foreach close=")" collection="dealPersonList" index="index" item="item" open="(" separator=",">
+                #{item}
+            </foreach>
+        </if>
+        <if test="startPerson!= null and startPerson!= '' ">
+            and c.start_person = #{startPerson,jdbcType=VARCHAR}
+        </if>
+        <if test="startPersonList!= null and startPersonList.size > 0">
+            and c.start_person in
+            <foreach close=")" collection="startPersonList" index="index" item="item" open="(" separator=",">
+                #{item}
+            </foreach>
+        </if>
+        <if test="empNo!= null and empNo!= '' ">
+            and c.emp_no = #{empNo,jdbcType=VARCHAR}
+        </if>
+        <if test="empNoList!= null and empNoList.size > 0">
+            and c.emp_no in
+            <foreach close=")" collection="empNoList" index="index" item="item" open="(" separator=",">
+                #{item}
+            </foreach>
+        </if>
+        <if test="bpmsInstanceNo!= null and bpms!= '' ">
+            and c.bpms_instance_no = #{bpmsInstanceNo,jdbcType=VARCHAR}
+        </if>
+        <if test="bpmsInstanceNoList!= null and bpmsInstanceNoList.size > 0">
+            and c.bpms_instance_no in
+            <foreach close=")" collection="bpmsInstanceNoList" index="index" item="item" open="(" separator=",">
+                #{item}
+            </foreach>
+        </if>
+        <if test="remark!= null and remark!= '' ">
+            and c.remark = #{remark,jdbcType=VARCHAR}
+        </if>
+        <if test="remarkList!= null and remarkList.size > 0">
+            and c.remark in
+            <foreach close=")" collection="remarkList" index="index" item="item" open="(" separator=",">
+                #{item}
+            </foreach>
+        </if>
+        <if test="isRemain!= null and isRemain!= '' ">
+            and c.is_remain = #{isRemain,jdbcType=CHAR}
+        </if>
+        <if test="isRemainList!= null and isRemainList.size > 0">
+            and c.is_remain in
+            <foreach close=")" collection="isRemainList" index="index" item="item" open="(" separator=",">
+                #{item}
+            </foreach>
+        </if>
+        <if test="remainEnd!= null and remainEnd!='' ">
+            and c.remain_end = #{remainEnd,jdbcType=TIMESTAMP}
+        </if>
+        <if test="remainEndList!= null and remainEndList.size > 0">
+            and c.remain_end in
+            <foreach close=")" collection="remainEndList" index="index" item="item" open="(" separator=",">
+                #{item}
+            </foreach>
+        </if>
+        <if test="signedCompany!= null and signedCompany!= '' ">
+            and c.signed_company = #{signedCompany,jdbcType=VARCHAR}
+        </if>
+        <if test="signedCompanyList!= null and signedCompanyList.size > 0">
+            and c.signed_company in
+            <foreach close=")" collection="signedCompanyList" index="index" item="item" open="(" separator=",">
+                #{item}
+            </foreach>
+        </if>
+        <if test="workLocation!= null and workLocation!= '' ">
+            and c.work_location = #{workLocation,jdbcType=VARCHAR}
+        </if>
+        <if test="workLocations!= null and workLocations.size > 0">
+            and c.work_location in
+            <foreach close=")" collection="workLocations" index="index" item="item" open="(" separator=",">
+                #{item}
+            </foreach>
+        </if>
+        <if test="operands!= null and operands!= '' ">
+            and c.operands = #{operands,jdbcType=VARCHAR}
+        </if>
+        <if test="operandsList!= null and operandsList.size > 0">
+            and c.operands in
+            <foreach close=")" collection="operandsList" index="index" item="item" open="(" separator=",">
+                #{item}
+            </foreach>
+        </if>
+        <if test="dept!= null and dept!= '' ">
+            and c.dept = #{dept,jdbcType=VARCHAR}
+        </if>
+        <if test="depts!= null and depts.size > 0">
+            and
+            <foreach item="deptPath" index="index" collection="depts" open="(" separator=" or " close=")">
+                c.dept_path like concat(#{deptPath}, '%')
+            </foreach>
+        </if>
+        <if test="countryCode!= null">
+            and c.country_code = #{countryCode,jdbcType=VARCHAR}
+        </if>
+        <if test="countryCodes!= null and countryCodes.size > 0">
+            and c.country_code in
+            <foreach close=")" collection="countryCodes" index="index" item="item" open="(" separator=",">
+                #{item}
+            </foreach>
+        </if>
+        <if test="acceptDateUpper!= null ">
+            <![CDATA[ and c.gmt_create < #{acceptDateUpper}]]>
+        </if>
+        <if test="acceptDateLower!= null ">
+            <![CDATA[ and c.gmt_create >= #{acceptDateLower}]]>
+        </if>
+        <if test="doneDateUpper!= null ">
+            <![CDATA[ and c.gmt_modified < #{doneDateUpper}]]>
+        </if>
+        <if test="doneDateLower!= null ">
+            <![CDATA[ and c.gmt_modified >= #{doneDateLower}]]>
+        </if>
+        <if test="doneDateLower!= null or doneDateUpper!= null">
+            and c.form_status in ('finish','abort')
+        </if>
+        <if test="isRelateMsg == 'y'.toString()">
+            and (c.is_relate_msg ='y' and c.form_status not in ('finish','abort'))
+        </if>
+        <if test="isRelateMsg == 'n'.toString()">
+            and (c.is_relate_msg ='n' or c.form_status  in ('finish','abort'))
+        </if>
+        <if test="contractBeginDateUpper!= null ">
+            <![CDATA[ and c.contract_begin_date <= #{contractBeginDateUpper}]]>
+        </if>
+        <if test="contractBeginDateLower!= null ">
+            <![CDATA[ and c.contract_begin_date >= #{contractBeginDateLower}]]>
+        </if>
+        <if test="isAllHavePdf!= null and isAllHavePdf!= '' ">
+            and c.is_all_have_pdf = #{isAllHavePdf,jdbcType=CHAR}
+        </if>
+        <if test="orderKey != null ">
+            <![CDATA[ and emp_no>=#{orderKey}]]>
+        </if>
+    </sql>
+
+    <select id="listContractSignPending" parameterType="list" resultMap="com.alibaba.hr.dal.mapper.form.ContractFormMapper.BaseResultMap">
+        select
+        <include refid="com.alibaba.hr.dal.mapper.form.ContractFormMapper.Base_Column_List" />
+        from contract_form
+        <where>
+            is_deleted = 'n'
+            AND form_status in
+            <foreach collection="formStatusList" index="index" item="item" open="(" separator=","  close=")">
+                #{item}
+            </foreach>
+            AND signApplyId IS NOT NULL
+            AND signApplyId != ''
+        </where>
+        limit #{rowStart},#{row}
+    </select>
+
+    <sql id="updateFields">
+        <set>
+            <if test="formType !=null">
+                form_type = #{formType},
+            </if>
+            <if test="formStatus!=null">
+                form_status = #{formStatus},
+            </if>
+            <if test="deptPath!=null">
+                dept_path = #{deptPath}
+            </if>
+        </set>
+    </sql>
+
+    <update id="update">
+        update contract_form
+        <include refid="updateFields"/>
+        where id = #{id}
+    </update>
+
+</mapper>

@@ -1,0 +1,10 @@
+# ??????????,?????,?????
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+org.javaboy.boot.autoconfig.HelloService,\
+org.javaboy.boot.autoconfig.Config1AutoConfiguration,\
+org.javaboy.boot.autoconfig.Config2AutoConfiguration,\
+org.javaboy.boot.monitor.DruidDataSourceMonitor
+  
+
+org.springframework.boot.SpringApplicationRunListener=\
+org.javaboy.boot.runlistener.RunListener

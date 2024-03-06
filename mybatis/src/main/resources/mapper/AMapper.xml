@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.javaboy.mybatis.example.AMapper">
+
+    <sql id="baseColumn">
+        name
+        ,score
+    </sql>
+
+    <sql id="queryCondition">
+        <where>
+            <if test="name!=null">
+                name=#{name,jdbcType=VARCHAR},
+            </if>
+            <if test="score!=null">
+                score = #{score,jdbcType=INTEGER}
+            </if>
+        </where>
+    </sql>
+
+    <select id="selectByScore" resultType="org.javaboy.mybatis.example.A">
+        select *
+        from a
+        where score = #{score}
+    </select>
+
+
+    <select id="select" resultType="org.javaboy.mybatis.example.A" parameterType="org.javaboy.mybatis.example.A">
+        select
+        <include refid="baseColumn"></include>
+        from
+        <include refid="tb"></include>
+        <include refid="queryCondition"></include>
+    </select>
+
+
+    <insert id="addOne">
+        insert into A(name, score)
+        values (#{name}, #{score})
+    </insert>
+
+    <update id="update">
+        update a
+        <set>
+            <include refid="updateBase"></include>
+        </set>
+        <where>
+            <include refid="updateCondition"></include>
+        </where>
+    </update>
+
+    <sql id="updateBase">
+        <if test="name!=null">
+            name = #{name},
+        </if>
+        <if test="score!=null">
+            score = #{score}
+        </if>
+    </sql>
+
+    <sql id="updateCondition">
+        <if test="name!=null">
+            name = #{name}
+        </if>
+    </sql>
+
+    <sql id="tb">
+        a
+    </sql>
+
+    <sql id="insertColumn">
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name!=null">
+                name,
+            </if>
+            <if test="score!=null">
+                score,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name!=null">
+                #{name},
+            </if>
+            <if test="score!=null">
+                #{score}
+            </if>
+        </trim>
+
+
+    </sql>
+
+    <!--插入一条记录-->
+    <insert id="insert">
+        insert into
+        <include refid="tb"></include>
+        <include refid="insertColumn"></include>
+    </insert>
+
+
+    <sql id="updateSet">
+        <set>
+            <if test="name!=null">
+                name = #{name},
+            </if>
+            <if test="score!=null">
+                score = #{score}
+            </if>
+        </set>
+
+    </sql>
+
+    <update id="updateByScore">
+        update
+        <include refid="tb"></include>
+        <include refid="updateSet"></include>
+        where score = #{score}
+    </update>
+
+    <delete id="deleteByName">
+        delete from
+        <include refid="tb"></include>
+        where name = #{name}
+    </delete>
+
+    <select id="search">
+        select
+        <include refid="baseColumn"></include>
+        from
+        <include refid="tb"></include>
+        <include refid="searchCondition"></include>
+
+    </select>
+
+    <sql id="searchCondition">
+        <where>
+            <if test="searchKey!=null and searchKey!=''">
+                name like concat('%',#{searchKey},'%')
+            </if>
+        </where>
+    </sql>
+
+</mapper>
