@@ -4,37 +4,130 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="09fecfe1-a401-4ffe-9f69-72fb73a7d3e3" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/javaboy/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/javaboy/Main.java" afterDir="false" />
+    <list default="true" id="09fecfe1-a401-4ffe-9f69-72fb73a7d3e3" name="Changes" comment="整理">
+      <change afterPath="$PROJECT_DIR$/scene/src/main/java/org/javaboy/scene/cache/LfuCache.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scene/src/main/java/org/javaboy/scene/cache/LruCache.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/src/main/java/org/javaboy/utils/Utils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/src/main/java/org/javaboy/utils/cache/CacheObject.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/src/main/java/org/javaboy/utils/cache/CacheUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 8
-}]]></component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
   <component name="ProjectId" id="2dJ5EYD3LmuUGik9XtV77hhI2fW" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.CacheUtil.executor&quot;: &quot;Run&quot;,
+    &quot;Application.LfuCache.executor&quot;: &quot;Run&quot;,
+    &quot;Application.LruCache.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Utils.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/jingmac/IdeaProjects/middle-demo&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
+  <component name="RunManager" selected="Application.Utils">
+    <configuration name="CacheUtil" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.javaboy.utils.cache.CacheUtil" />
+      <module name="utils" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.javaboy.utils.cache.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LfuCache" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.javaboy.scene.cache.LfuCache" />
+      <module name="scene" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.javaboy.scene.cache.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LruCache" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.javaboy.scene.cache.LruCache" />
+      <module name="scene" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.javaboy.scene.cache.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Utils" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.javaboy.utils.Utils" />
+      <module name="utils" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.javaboy.utils.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UtilsApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="utils" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.javaboy.utils.UtilsApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Utils" />
+        <item itemvalue="Application.CacheUtil" />
+        <item itemvalue="Application.LfuCache" />
+        <item itemvalue="Application.LruCache" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -51,10 +144,41 @@
       <option name="presentableId" value="Default" />
       <updated>1709713230282</updated>
       <workItem from="1709713231855" duration="2000" />
+      <workItem from="1709714552627" duration="1156000" />
+      <workItem from="1709727971026" duration="2000" />
+      <workItem from="1709735821059" duration="10780000" />
+      <workItem from="1709823413654" duration="775000" />
+      <workItem from="1709863120017" duration="5890000" />
+      <workItem from="1710297296656" duration="2896000" />
+      <workItem from="1710310184921" duration="453000" />
     </task>
+    <task id="LOCAL-00001" summary="整理">
+      <option name="closed" value="true" />
+      <created>1709714646559</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1709714646559</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="整理" />
+    <option name="LAST_COMMIT_MESSAGE" value="整理" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/scene/src/main/java/org/javaboy/scene/cache/LruCache.java</url>
+          <line>30</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
