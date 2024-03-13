@@ -5,13 +5,46 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="09fecfe1-a401-4ffe-9f69-72fb73a7d3e3" name="Changes" comment="整理">
-      <change afterPath="$PROJECT_DIR$/scene/src/main/java/org/javaboy/scene/cache/LfuCache.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scene/src/main/java/org/javaboy/scene/cache/LruCache.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/src/main/java/org/javaboy/utils/Utils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/src/main/java/org/javaboy/utils/cache/CacheObject.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/src/main/java/org/javaboy/utils/cache/CacheUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/src/main/java/org/javaboy/utils/lock/AbstractLockAttributeSource.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/src/main/java/org/javaboy/utils/lock/AnnotationLockAttributeSource.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/src/main/java/org/javaboy/utils/lock/BeanTypeNotPresentCondition.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/src/main/java/org/javaboy/utils/lock/ByteConverter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/src/main/java/org/javaboy/utils/lock/DefaultByteConverter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/src/main/java/org/javaboy/utils/lock/DistributedLock.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/src/main/java/org/javaboy/utils/lock/DistributedLockAutoProxyCreator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/src/main/java/org/javaboy/utils/lock/DistributedLockException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/src/main/java/org/javaboy/utils/lock/DistributedLockMethodPointcutAdvisor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/src/main/java/org/javaboy/utils/lock/IdempotentLock.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/src/main/java/org/javaboy/utils/lock/IdempotentLockAttribute.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/src/main/java/org/javaboy/utils/lock/IdempotentLockSupport.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/src/main/java/org/javaboy/utils/lock/IdempotentMethodInterceptor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/src/main/java/org/javaboy/utils/lock/IdempotentMethondPointcutAdvisor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/src/main/java/org/javaboy/utils/lock/LockAspectSupport.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/src/main/java/org/javaboy/utils/lock/LockAttribute.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/src/main/java/org/javaboy/utils/lock/LockAttributeSource.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/src/main/java/org/javaboy/utils/lock/LockErrorHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/src/main/java/org/javaboy/utils/lock/LockFailHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/src/main/java/org/javaboy/utils/lock/LockInterceptor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/src/main/java/org/javaboy/utils/lock/LockPolicy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/src/main/java/org/javaboy/utils/lock/LockService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/src/main/java/org/javaboy/utils/lock/MethodCacheKey.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/src/main/java/org/javaboy/utils/lock/NullType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/src/main/java/org/javaboy/utils/lock/ProxyLockConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/src/main/java/org/javaboy/utils/lock/SimpleExpressionEvaluator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/src/main/java/org/javaboy/utils/lock/SimpleLockAttribute.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/src/main/java/org/javaboy/utils/lock/SimpleLockFailHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/src/main/java/org/javaboy/utils/lock/StringByteConverter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/src/main/java/org/javaboy/utils/lock/rdb/DefaultRedisService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/src/main/java/org/javaboy/utils/lock/rdb/RdbDistributedLockAutoConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/src/main/java/org/javaboy/utils/lock/rdb/RdbIdempotentLockAutoConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/src/main/java/org/javaboy/utils/lock/rdb/RdbIdempotentMethodInterceptor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/src/main/java/org/javaboy/utils/lock/rdb/RdbLockProperties.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/src/main/java/org/javaboy/utils/lock/rdb/RdbLockService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/src/main/java/org/javaboy/utils/lock/rdb/RdbLockSupport.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/src/main/java/org/javaboy/utils/lock/rdb/RedisService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/src/main/java/org/javaboy/utils/lock/rdb/RedisServiceConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/src/main/java/org/javaboy/utils/lock/rdb/SpringRedisService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/src/main/java/org/javaboy/utils/Utils.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,25 +73,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.CacheUtil.executor&quot;: &quot;Run&quot;,
-    &quot;Application.LfuCache.executor&quot;: &quot;Run&quot;,
-    &quot;Application.LruCache.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Utils.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/jingmac/IdeaProjects/middle-demo&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.CacheUtil.executor": "Run",
+    "Application.LfuCache.executor": "Run",
+    "Application.LruCache.executor": "Run",
+    "Application.Utils.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "jdk.selected.JAVA_MODULE": "1.8",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/jingmac/IdeaProjects/middle-demo/utils/src/main/java/org/javaboy/utils/async",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/utils/src/main/java/org/javaboy/utils/async" />
+      <recent name="$PROJECT_DIR$/utils/src/main/java/org/javaboy/utils/lock/rdb" />
+      <recent name="$PROJECT_DIR$/utils/src/main/java/org/javaboy/utils/lock" />
+    </key>
+  </component>
   <component name="RunManager" selected="Application.Utils">
     <configuration name="CacheUtil" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.javaboy.utils.cache.CacheUtil" />
@@ -150,7 +191,7 @@
       <workItem from="1709823413654" duration="775000" />
       <workItem from="1709863120017" duration="5890000" />
       <workItem from="1710297296656" duration="2896000" />
-      <workItem from="1710310184921" duration="453000" />
+      <workItem from="1710310184921" duration="976000" />
     </task>
     <task id="LOCAL-00001" summary="整理">
       <option name="closed" value="true" />
@@ -160,7 +201,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709714646559</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="整理">
+      <option name="closed" value="true" />
+      <created>1710310640659</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1710310640659</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
